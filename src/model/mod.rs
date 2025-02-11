@@ -163,6 +163,12 @@ pub fn load_htsvoice_file<P: AsRef<std::path::Path>>(path: &P) -> Result<Voice, 
     Ok(parser::parse_htsvoice(&f)?)
 }
 
+/// Load `.htsvoice` bytes as [`Voice`].
+#[cfg(feature = "htsvoice")]
+pub fn load_htsvoice_bytes(bytes: &[u8]) -> Result<Voice, ModelError> {
+    Ok(parser::parse_htsvoice(&bytes)?)
+}
+
 #[cfg(all(test, feature = "htsvoice"))]
 pub(crate) mod tests {
     use std::{borrow::Cow, sync::Arc};
